@@ -26,6 +26,7 @@ class ArcProgressIndicator extends StatelessWidget {
   final Animation<double> _progress;
 
   ArcProgressIndicator({
+    Key? key,
     required this.controller,
     required this.radius,
     this.startAngle = 0.0,
@@ -34,20 +35,21 @@ class ArcProgressIndicator extends StatelessWidget {
     required this.icon,
     this.iconColor,
     this.iconSize,
-  }) : _progress = new Tween(begin: 0.0, end: 1.0).animate(controller);
+  })  : _progress = Tween(begin: 0.0, end: 1.0).animate(controller),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     late TextPainter _iconPainter;
     final ThemeData theme = Theme.of(context);
-    final Color? _iconColor = iconColor ?? theme.accentIconTheme.color;
+    final Color? _iconColor = iconColor ?? theme.colorScheme.secondary;
     final double? _iconSize = iconSize ?? IconTheme.of(context).size;
 
-    _iconPainter = new TextPainter(
+    _iconPainter = TextPainter(
       textDirection: Directionality.of(context),
-      text: new TextSpan(
-        text: new String.fromCharCode(icon.codePoint),
-        style: new TextStyle(
+      text: TextSpan(
+        text: String.fromCharCode(icon.codePoint),
+        style: TextStyle(
           inherit: false,
           color: _iconColor,
           fontSize: _iconSize,
@@ -60,9 +62,9 @@ class ArcProgressIndicator extends StatelessWidget {
     return CustomPaint(
       painter: _ArcProgressPainter(
         controller: _progress,
-        color: Colors.green,//color ?? theme.accentColor,
+        color: Colors.green, //color ?? theme.accentColor,
         radius: radius,
-        width: 40.0,//width ?? _iconSize! * 2,
+        width: 40.0, //width ?? _iconSize! * 2,
         startAngle: startAngle,
         icon: _iconPainter,
       ),
@@ -92,7 +94,7 @@ class _ArcProgressPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = new Paint()
+    Paint paint = Paint()
       ..color = color
       ..strokeWidth = width
       ..strokeCap = StrokeCap.round
@@ -108,15 +110,13 @@ class _ArcProgressPainter extends CustomPainter {
       paint,
     );
 
-    if (icon != null) {
-      double angle = startAngle + sweepAngle;
-      Offset offset = new Offset(
-        (size.width / 2 - icon.size.width / 2) + radius * Math.cos(angle),
-        (size.height / 2 - icon.size.height / 2) + radius * Math.sin(angle),
-      );
+    double angle = startAngle + sweepAngle;
+    Offset offset = Offset(
+      (size.width / 2 - icon.size.width / 2) + radius * Math.cos(angle),
+      (size.height / 2 - icon.size.height / 2) + radius * Math.sin(angle),
+    );
 
-      icon.paint(canvas, offset);
-    }
+    icon.paint(canvas, offset);
   }
 
   @override

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 class RadialMenuButton extends StatelessWidget {
   const RadialMenuButton({
+    Key? key,
     required this.child,
     required this.backgroundColor,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   final Widget child;
   final Color backgroundColor;
@@ -14,8 +15,7 @@ class RadialMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color =
-        Colors.black45; //backgroundColor ?? Theme.of(context).primaryColor;
+    final Color color = backgroundColor;
 
     return Semantics(
       button: true,

@@ -9,7 +9,7 @@ import 'package:flutter_radial_menu/radial/src/radial_menu_center_button.dart';
 import 'package:flutter_radial_menu/radial/src/radial_menu_item.dart';
 
 const double _radiansPerDegree = math.pi / 180;
-const double _startAngle = -90.0 * _radiansPerDegree;
+const double _startAngle = -150.0 * _radiansPerDegree;
 
 typedef ItemAngleCalculator = double Function(int index);
 
@@ -77,7 +77,7 @@ class RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
   late AnimationController _menuAnimationController;
   late AnimationController _progressAnimationController;
   bool _isOpen = false;
-  int _activeItemIndex = 0;
+  int _activeItemIndex = -1;
 
   // todo: xqwzts: allow users to pass in their own calculator as a param.
   // and change this to the default: radialItemAngleCalculator.
@@ -128,7 +128,7 @@ class RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
     _progressAnimationController.reverse();
     setState(() {
       _isOpen = false;
-      _activeItemIndex = 0;
+      _activeItemIndex = -1;
     });
   }
 
@@ -184,7 +184,9 @@ class RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
       }
     }
 
-    children.add(_buildActiveAction(_activeItemIndex));
+    if (_activeItemIndex != -1) {
+      children.add(_buildActiveAction(_activeItemIndex));
+    }
     children.add(_buildCenterButton());
 
     return AnimatedBuilder(

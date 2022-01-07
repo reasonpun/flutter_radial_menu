@@ -45,13 +45,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<RadialMenuItem<MenuOptions>> items = <RadialMenuItem<MenuOptions>>[
     const RadialMenuItem<MenuOptions>(
+      tooltip: 'unread',
       value: MenuOptions.unread,
       child: Icon(
         Icons.markunread,
       ),
       iconColor: Colors.white,
       backgroundColor: Colors.blue,
-      tooltip: 'unread',
     ),
     const RadialMenuItem<MenuOptions>(
       tooltip: "share",

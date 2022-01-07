@@ -20,7 +20,7 @@ class RadialMenuItem<T> extends StatelessWidget {
     required this.backgroundColor,
     required this.iconColor,
     // this.iconSize: 24.0,
-  })  : super(key: key);
+  }) : super(key: key);
 
   /// The widget below this widget in the tree.
   ///
@@ -60,21 +60,21 @@ class RadialMenuItem<T> extends StatelessWidget {
 
     late Widget result;
 
-    result = new Center(
+    result = Center(
       child: IconTheme.merge(
-        data: new IconThemeData(
+        data: IconThemeData(
           color: _iconColor,
         ),
         child: child,
       ),
     );
 
-    result = new Tooltip(
+    result = Tooltip(
       message: tooltip,
       child: result,
     );
 
-    result = new Container(
+    result = SizedBox(
       width: size,
       height: size,
       child: result,

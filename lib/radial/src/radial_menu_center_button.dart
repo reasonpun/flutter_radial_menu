@@ -52,6 +52,7 @@ class RadialMenuCenterButton extends StatelessWidget {
   final Animation<double> _scale;
 
   RadialMenuCenterButton({
+    Key? key,
     required this.openCloseAnimationController,
     required this.activateAnimationController,
     required this.onPressed,
@@ -60,44 +61,45 @@ class RadialMenuCenterButton extends StatelessWidget {
     this.closedColor = Colors.white,
     this.openedColor = Colors.grey,
     this.size = _defaultButtonSize,
-  })  : _progress = new Tween(begin: 0.0, end: 1.0).animate(
-          new CurvedAnimation(
+  })  : _progress = Tween(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
             parent: openCloseAnimationController,
-            curve: new Interval(
+            curve: const Interval(
               0.0,
               0.5,
               curve: Curves.ease,
             ),
           ),
         ),
-        _scale = new Tween(begin: 1.0, end: 0.0).animate(
-          new CurvedAnimation(
+        _scale = Tween(begin: 1.0, end: 0.0).animate(
+          CurvedAnimation(
             parent: activateAnimationController,
             curve: Curves.elasticIn,
           ),
-        );
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final AnimatedIcon animatedIcon = new AnimatedIcon(
+    final AnimatedIcon animatedIcon = AnimatedIcon(
       color: iconColor,
       icon: AnimatedIcons.menu_close,
       progress: _progress,
     );
 
-    final Widget child = new Container(
+    final Widget child = SizedBox(
       width: size,
       height: size,
-      child: new Center(
+      child: Center(
         child: animatedIcon,
       ),
     );
 
     final Color color = isOpen ? openedColor : closedColor;
 
-    return new ScaleTransition(
+    return ScaleTransition(
       scale: _scale,
-      child: new RadialMenuButton(
+      child: RadialMenuButton(
         child: child,
         backgroundColor: color,
         onPressed: onPressed,
