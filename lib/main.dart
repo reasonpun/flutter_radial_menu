@@ -118,9 +118,10 @@ class _MyHomePageState extends State<MyHomePage> {
               'This shows button Menu',
             ),
             Container(
+              color: Colors.greenAccent,
               alignment: Alignment.center,
               width: double.infinity,
-              height: 50.0,
+              height: 150.0,
               child: RadialMenu(
                 key: _menuKey,
                 items: items,

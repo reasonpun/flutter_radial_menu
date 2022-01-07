@@ -157,7 +157,7 @@ class RadialMenuState extends State<RadialMenu> with TickerProviderStateMixin {
         icon: (item.child as Icon).icon!,
         iconColor: item.iconColor,
         startAngle: calculateItemAngle(index),
-        width: double.infinity,
+        iconSize: item.iconSize,
       ),
     );
   }

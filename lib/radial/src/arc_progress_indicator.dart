@@ -12,12 +12,12 @@ class ArcProgressIndicator extends StatelessWidget {
 
   // optional
   final double startAngle;
-  final double width;
+  final double? width;
 
   /// The color to use when filling the arc.
   ///
   /// Defaults to the accent color of the current theme.
-  final Color color;
+  final Color? color;
   final IconData icon;
   final Color? iconColor;
   final double? iconSize;
@@ -30,8 +30,8 @@ class ArcProgressIndicator extends StatelessWidget {
     required this.controller,
     required this.radius,
     this.startAngle = 0.0,
-    required this.width,
-    required this.color,
+    this.width,
+    this.color,
     required this.icon,
     this.iconColor,
     this.iconSize,
@@ -62,9 +62,9 @@ class ArcProgressIndicator extends StatelessWidget {
     return CustomPaint(
       painter: _ArcProgressPainter(
         controller: _progress,
-        color: Colors.green, //color ?? theme.accentColor,
+        color: color ?? theme.colorScheme.secondary,
         radius: radius,
-        width: 40.0, //width ?? _iconSize! * 2,
+        width: width ?? _iconSize! * 2,
         startAngle: startAngle,
         icon: _iconPainter,
       ),

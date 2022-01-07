@@ -19,7 +19,7 @@ class RadialMenuItem<T> extends StatelessWidget {
     this.size = _defaultButtonSize,
     required this.backgroundColor,
     required this.iconColor,
-    // this.iconSize: 24.0,
+    this.iconSize = 24.0,
   }) : super(key: key);
 
   /// The widget below this widget in the tree.
@@ -53,6 +53,8 @@ class RadialMenuItem<T> extends StatelessWidget {
   /// Defaults to the primary icon theme color.
   final Color? iconColor;
 
+  final double? iconSize;
+
   @override
   Widget build(BuildContext context) {
     final Color? _iconColor =
@@ -64,6 +66,7 @@ class RadialMenuItem<T> extends StatelessWidget {
       child: IconTheme.merge(
         data: IconThemeData(
           color: _iconColor,
+          size: iconSize,
         ),
         child: child,
       ),
