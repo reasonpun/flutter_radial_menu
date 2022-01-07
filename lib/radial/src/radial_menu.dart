@@ -52,7 +52,7 @@ class RadialMenu<T> extends StatefulWidget {
   final List<RadialMenuItem<T>> items;
 
   /// Called when the user selects an item.
-  final ValueChanged<T> onSelected;
+  final Function onSelected; // TODO why Function? not ValueChanged?
 
   /// The radius of the arc used to lay out the items and draw the progress bar.
   ///
